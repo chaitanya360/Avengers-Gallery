@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function checkFeasibility() {
+        if (window.innerWidth < 1000) {
+          let body = document.getElementById("root");
+          // body.style.display = "none";
+          body.style.color = "white";
+          body.style.fontSize = "larger";
+          body.innerHTML = "Only Visible on Desktop screen";
+        }
+      }
+    </script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+      }
+      .left,
+      .right,
+      .margin {
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+
+        opacity: 0.8;
+        filter: blur(2.3px);
+        filter: contrast(50%);
+        filter: brightness(150%);
+        border-right: white 1px solid;
+        border-color: rgba(255, 255, 255, 0.4);
+        top: 0px;
+        position: absolute;
+        width: 50px;
+        height: 100%;
+        background-color: black;
+        margin: 0;
+      }
+      .right {
+        z-index: 1;
+        border-left: white 1px solid;
+        border-color: rgba(255, 255, 255, 0.4);
+        right: 0px;
+      }
+      .top,
+      .bottom {
+        color: white;
+        margin-bottom: 0px;
+        z-index: 0;
+        border-bottom: white 1px solid;
+        border-color: rgba(255, 255, 255, 0.4);
+        height: 50px;
+        width: 100%;
+      }
+      .bottom {
+        border-top: white 1px solid;
+        border-color: rgba(255, 255, 255, 0.4);
+        top: 93.5%;
+      }
+
+      body > img {
+        position: fixed;
+        display: block;
+        width: 100%;
+        height: auto;
+        animation-name: anim_opacity;
+        animation-delay: 0s;
+        animation-timing-function: ease-in;
+        animation-duration: 4s;
+      }
+      .container {
+        z-index: 2;
+        position: fixed;
+
+        width: 92.5%;
+        height: 86.8%;
+        background-color: transparent;
+        margin: 50px;
+      }
+      .leftBlock {
+        animation-name: anim_height;
+        animation-delay: 0s;
+        animation-timing-function: linear;
+        animation-duration: 2s;
+        margin: 0;
+        top: -5px;
+        position: absolute;
+        left: 40px;
+        width: 200px;
+        height: 95.7%;
+        background-color: rgba(251, 8, 27, 0.9);
+        filter: contrast(200%);
+        filter: blur(1.5px);
+        box-shadow: 30px 10px 400px #d7081b;
+        border-top: 26px white solid;
+        border-bottom: 5px rgba(0, 0, 0, 0.2) solid;
+      }
+      @keyframes anim_height {
+        0% {
+          height: 0;
+          display: none;
+        }
+        30% {
+          display: block;
+        }
+        100% {
+          height: 95.7%;
+        }
+      }
+      @keyframes anim_height2 {
+        0% {
+          height: 0;
+          display: none;
+        }
+        1% {
+          display: block;
+        }
+        100% {
+          height: 10px;
+        }
+      }
+
+      .pre {
+        z-index: 0;
+        position: absolute;
+        border: 1px white solid;
+        border-color: rgba(255, 255, 255, 0.4);
+        width: 100%;
+
+        height: 70px;
+        background-color: #d7081b;
+      }
+
+      .number,
+      .text {
+        animation-name: anim_opacity;
+        animation-delay: 0s;
+        animation-timing-function: ease-in;
+        animation-duration: 3s;
+        z-index: 40;
+        position: absolute;
+        font-size: 150px;
+        color: white;
+        font-family: Bahnschrift SemiLight Condensed;
+        top: 40px;
+        left: 90px;
+        font-weight: 900;
+        text-shadow: 6px 6px rgba(0, 0, 0, 0.5);
+      }
+      .name1,
+      .name3 {
+        letter-spacing: 5px;
+        opacity: 0.9;
+        top: 210px;
+        font-size: 70px;
+        left: 130px;
+      }
+      .icon {
+        animation-fill-mode: forwards;
+        animation-name: anim_opacity;
+        animation-delay: 0s;
+        animation-timing-function: linear;
+        animation-duration: 5s;
+        z-index: -1;
+        opacity: 0.8;
+        left: -30px;
+        top: -10px;
+        position: absolute;
+        border-radius: 100px;
+        opacity: 0.6;
+        box-shadow: 3px 3px 33px blue, -3px -3px 33px blue, -3px 3px 33px blue,
+          3px -3px 33px blue;
+        width: 150px;
+        height: 150px;
+        filter: hue-rotate(90deg);
+        filter: drop-shadow(-2px -2px 3px rgb(0, 0, 0));
+      }
+
+      .name2 {
+        position: absolute;
+        margin-left: 80px;
+        top: 70px;
+      }
+
+      .rightBlock {
+        z-index: -1;
+        top: 435px;
+        opacity: 0.6;
+        position: absolute;
+        left: 990px;
+        background-color: #d7081b;
+        padding: 30px;
+        border-bottom-left-radius: 2px;
+        border-top-left-radius: 2px;
+        width: 140px;
+        height: 10px;
+        filter: blur(10px);
+        box-shadow: -20px -50px 200px #d7081b;
+        border-left: black 20px solid;
+        border-right: black 20px solid;
+        animation-name: anim_width;
+        animation-duration: 1s;
+
+        animation-delay: 0s;
+        animation-timing-function: linear;
+      }
+      .name3 {
+        font-size: 30px;
+        color: white;
+        letter-spacing: 1px;
+        text-shadow: 2px 2px 4px black;
+        font-family: Bahnschrift SemiLight Condensed;
+        top: 450px;
+        filter: blur(0px);
+        position: absolute;
+        left: 1010px;
+        animation-name: anim_opacity;
+        animation-fill-mode: backwards;
+        animation-delay: 1.2s;
+        animation-duration: 5s;
+      }
+      @keyframes anim_width {
+        0% {
+          width: 0px;
+          box-shadow: none;
+          border-left: none;
+          border-right: none;
+          display: none;
+        }
+        20% {
+          display: block;
+        }
+        100% {
+          width: 140px;
+          box-shadow: -20px -50px 200px #d7081b;
+          border-left: black 20px solid;
+          border-right: black 20px solid;
+          padding: 30px;
+        }
+      }
+      @keyframes anim_width2 {
+        0% {
+          width: 0px;
+        }
+        100% {
+          width: auto;
+        }
+      }
+      @keyframes anim_opacity {
+        0% {
+          display: block;
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .fas {
+        position: relative;
+        top: 15px;
+        left: 10px;
+        color: white;
+        text-shadow: 3px 3px black;
+        font-size: 40px;
+      }
+      .avg,
+      .youtube,
+      .twiter,
+      .instagram {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 9;
+        width: 35px;
+        height: 35px;
+      }
+
+      .youtube {
+        top: 70px;
+        left: 6px;
+      }
+
+      .twiter {
+        width: 39px;
+        height: 39px;
+        left: 4px;
+        top: 130px;
+      }
+      .instagram {
+        top: 197px;
+        left: 5.5px;
+      }
+
+      .top > span {
+        position: relative;
+        left: 350px;
+        color: white;
+        font-family: Consolas;
+        margin-left: 30px;
+        font-size: 20px;
+      }
+      .top > hr {
+        width: 80px;
+        position: relative;
+        top: 25px;
+        left: 268px;
+        color: #d7081b;
+        height: 3px;
+        background-color: white;
+      }
+      .line1,
+      .line2,
+      .line3,
+      .line4 {
+        animation-name: anim_opacity;
+        animation-duration: 4s;
+        width: 600px;
+        position: absolute;
+        background-color: black;
+        top: 18px;
+        right: 0px;
+      }
+
+      .line2 {
+        width: 510px;
+        top: 60px;
+      }
+      .line3 {
+        width: 300px;
+        top: 100px;
+      }
+      .line4 {
+        width: 200px;
+        top: 140px;
+      }
+      .age,
+      .intro,
+      .moviescount {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-left: solid 4px rgba(250, 0, 0, 0.6);
+        padding: 7px;
+        padding-left: 15px;
+        border-right: double 4px black;
+        border-top-left-radius: 30px;
+        color: white;
+        text-shadow: 2px 2px 3px #d7081b;
+        font-family: consolas;
+        position: absolute;
+        top: 32px;
+        right: 10px;
+        font-size: 20px;
+        animation-name: anim_height2;
+        animation-name: anim_opacity;
+        animation-duration: 1s;
+        animation-fill-mode: backwards;
+        animation-delay: 1s;
+        animation-timing-function: linear;
+        overflow: hidden;
+      }
+      .intro {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      .moviescount {
+        top: 112px;
+      }
+      .age {
+        top: 72px;
+      }
+      .character {
+        animation-fill-mode: forwards;
+        animation-name: anim_opacity;
+        animation-delay: 0.8s;
+        animation-timing-function: linear;
+        animation-duration: 4s;
+        position: absolute;
+        opacity: 0;
+        text-shadow: 0 0 3px #d7081b, 0 0 5px #d7081b, 0 0 5px #d7081b;
+        right: 120px;
+        top: 200px;
+        font-size: 60px;
+        color: black;
+        font-family: Lucida Console;
+        font-weight: 900;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding-right: 60px;
+        padding-left: 20px;
+        border-top-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+      }
+      .second-name {
+        position: relative;
+        left: 40px;
+      }
+      .search,
+      .share {
+        position: relative;
+        top: 98%;
+        left: 1000px;
+        font-size: 32px;
+        color: white;
+        background-color: #d7081b;
+        padding: 5px;
+        border-radius: 50px;
+        opacity: 0.9;
+        box-shadow: 3px 3px 50px #d7081b;
+        border: 1px solid white;
+        animation-name: anim_opacity;
+        animation-delay: 0s;
+        animation-timing-function: ease-in;
+        animation-duration: 4s;
+      }
+      .share {
+        left: 1060px;
+      }
+
+      .color {
+        z-index: -4;
+        height: 500px;
+        width: 200px;
+        position: absolute;
+        right: -250px;
+        top: 10px;
+        box-shadow: -500px 20px 500px #d7081b;
+        animation-name: anim_opacity;
+        animation-delay: 0s;
+        animation-timing-function: ease-in;
+        animation-duration: 4s;
+      }
+      a {
+        top: -40px;
+        position: relative;
+        text-decoration: none;
+        width: 50px;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="Avengers.css" />
+  </head>
+  <body id="root" onload="checkFeasibility()">
+    <img src="./Images/tony10.jpg" />
+
+    <div class="margin left">
+      <a href="Avengers03.html"
+        ><span class="pre"><i class="fas"><</i></span></a
+      >
+    </div>
+    <img class="avg" src="./Images/avengers1.png" />
+    <img class="youtube" src="./Images/youtube1.png" />
+    <img class="twiter" src="./Images/twitter.png" />
+    <img class="instagram" src="./Images/instagram.png" />
+    <img
+      class="facebook"
+      src="./Images/facebook.png"
+      style="margin-top: 30px"
+    />
+    <div class="margin top"></div>
+
+    <div class="margin right">
+      <a href="Avengers05.html"
+        ><span class="pre"><i class="fas">></i></span></a
+      >
+    </div>
+    <div class="margin bottom"></div>
+    <div class="container">
+      <hr class="line1" />
+      <hr class="line2" />
+      <hr class="line3" />
+      <hr class="line4" />
+      <span class="intro"> "I AM IRON MAN."</span>
+      <span class="moviescount">08 Movies</span>
+      <span class="age">Age:48 years</span>
+      <span class="leftBlock"></span>
+      <span class="text number">04</span
+      ><span class="text name1"
+        >Iron<br />
+        <span class="name2"> Man</span
+        ><img class="icon" src="./Images/iron.png" /></span
+      ><span class="rightBlock"></span
+      ><span class="name3"> Robert Downey jr.</span>
+      <div class="character">
+        <span>Tony</span><br /><span class="second-name">Stark</span>
+      </div>
+
+      <div class="color"></div>
+    </div>
+  </body>
+</html>
